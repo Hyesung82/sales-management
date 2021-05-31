@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/ivMyInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_launcher_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/bProductInfo"
+        android:layout_width="@dimen/standard_width"
+        android:layout_height="wrap_content"
+        android:text="@string/button_product_info"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivMyInfo" />
+
+    <Button
+        android:id="@+id/bCustomerInfo"
+        android:layout_width="@dimen/standard_width"
+        android:layout_height="wrap_content"
+        android:text="@string/button_customer_info"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bProductInfo" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilRegion"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/menu_region"
+        app:layout_constraintEnd_toStartOf="@+id/bCheck"
+        app:layout_constraintStart_toStartOf="@+id/bCustomerInfo"
+        app:layout_constraintTop_toBottomOf="@+id/bCustomerInfo">
+
+        <AutoCompleteTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/bCheck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_check"
+        app:layout_constraintBottom_toBottomOf="@+id/tilRegion"
+        app:layout_constraintEnd_toEndOf="@+id/bCustomerInfo"
+        app:layout_constraintTop_toBottomOf="@+id/bCustomerInfo" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
