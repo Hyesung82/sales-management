@@ -32,6 +32,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bProductInfo" />
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="지역별 물품 재고"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bCustomerInfo" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilRegion"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
@@ -40,7 +49,7 @@
         android:hint="@string/menu_region"
         app:layout_constraintEnd_toStartOf="@+id/bCheck"
         app:layout_constraintStart_toStartOf="@+id/bCustomerInfo"
-        app:layout_constraintTop_toBottomOf="@+id/bCustomerInfo">
+        app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <AutoCompleteTextView
             android:layout_width="match_parent"
@@ -56,6 +65,6 @@
         android:text="@string/button_check"
         app:layout_constraintBottom_toBottomOf="@+id/tilRegion"
         app:layout_constraintEnd_toEndOf="@+id/bCustomerInfo"
-        app:layout_constraintTop_toBottomOf="@+id/bCustomerInfo" />
+        app:layout_constraintTop_toTopOf="@+id/tilRegion" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
