@@ -8,9 +8,11 @@
 
     <ImageView
         android:id="@+id/ivBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_launcher_background"
+        android:layout_width="37dp"
+        android:layout_height="37dp"
+        android:src="@drawable/left_arrow"
+        android:translationX="10dp"
+        android:translationY="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -18,12 +20,13 @@
         android:id="@+id/svProduct"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:translationY="15dp"
         app:iconifiedByDefault="false"
-        app:queryHint="제품 이름을 입력해주세요"
         app:layout_constraintBottom_toBottomOf="@+id/ivBack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/ivBack"
-        app:layout_constraintTop_toTopOf="@+id/ivBack" />
+        app:layout_constraintTop_toTopOf="@+id/ivBack"
+        app:queryHint="제품 이름을 입력해주세요" />
 
     <ListView
         android:id="@+id/lvCategory"
