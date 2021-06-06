@@ -1,86 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:id="@+id/ivMyInfo"
-        android:layout_width="68dp"
-        android:layout_height="76dp"
-        android:layout_marginEnd="12dp"
-        android:src="@drawable/user"
-        android:translationY="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/bProductInfo"
-        android:layout_width="@dimen/standard_width"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#656565"
-        android:text="@string/button_product_info"
-        android:textSize="16sp"
-        android:translationY="150dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivMyInfo" />
+        <ImageView
+            android:id="@+id/ivMyInfo"
+            android:layout_width="68dp"
+            android:layout_height="76dp"
+            android:layout_marginEnd="12dp"
+            android:src="@drawable/user"
+            android:translationY="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/bCustomerInfo"
-        android:layout_width="@dimen/standard_width"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#656565"
-        android:text="@string/button_customer_info"
-        android:textSize="16sp"
-        android:translationY="150dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bProductInfo" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="지역별 물품 재고"
-        android:textSize="16sp"
-        android:translationY="170dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bCustomerInfo" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilRegion"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edge"
-        android:hint="@string/menu_region"
-        android:translationY="180dp"
-        app:layout_constraintEnd_toStartOf="@+id/bCheck"
-        app:layout_constraintStart_toStartOf="@+id/bCustomerInfo"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
-
-        <AutoCompleteTextView
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/bProductInfo"
+            android:layout_width="@dimen/standard_width"
             android:layout_height="wrap_content"
-            android:inputType="none"
-            android:textSize="16sp" />
+            android:backgroundTint="#656565"
+            android:text="@string/button_product_info"
+            android:textSize="16sp"
+            android:translationY="150dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivMyInfo" />
 
-    </com.google.android.material.textfield.TextInputLayout>
+        <Button
+            android:id="@+id/bCustomerInfo"
+            android:layout_width="@dimen/standard_width"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#656565"
+            android:text="@string/button_customer_info"
+            android:textSize="16sp"
+            android:translationY="150dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bProductInfo" />
 
-    <Button
-        android:id="@+id/bCheck"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#656565"
-        android:text="@string/button_check"
-        android:textSize="16sp"
-        android:translationY="180dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tilRegion"
-        app:layout_constraintEnd_toEndOf="@+id/bCustomerInfo"
-        app:layout_constraintTop_toTopOf="@+id/tilRegion" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="지역별 물품 재고"
+            android:textSize="16sp"
+            android:translationY="170dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bCustomerInfo" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilRegion"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edge"
+            android:hint="@string/menu_region"
+            android:translationY="180dp"
+            app:layout_constraintEnd_toStartOf="@+id/bCheck"
+            app:layout_constraintStart_toStartOf="@+id/bCustomerInfo"
+            app:layout_constraintTop_toBottomOf="@+id/textView">
+
+            <AutoCompleteTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/bCheck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#656565"
+            android:text="@string/button_check"
+            android:textSize="16sp"
+            android:translationY="180dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tilRegion"
+            app:layout_constraintEnd_toEndOf="@+id/bCustomerInfo"
+            app:layout_constraintTop_toTopOf="@+id/tilRegion" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OTManagement">
-        <activity android:name=".UserInfo"></activity>
+        <activity android:name=".UserInfo" />
         <activity android:name=".WarehouseDetail" />
         <activity android:name=".CountriesByRegion" />
         <activity android:name=".CustomerDetail" />
@@ -17,15 +17,15 @@
         <activity android:name=".ItemByName" />
         <activity android:name=".ItemByCategory" />
         <activity android:name=".ProductInfo" />
-        <activity android:name=".Login" />
-        <activity android:name=".Splash" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Splash" />
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
