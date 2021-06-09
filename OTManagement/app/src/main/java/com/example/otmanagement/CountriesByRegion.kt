@@ -19,12 +19,15 @@ class CountriesByRegion : AppCompatActivity(), AdapterView.OnItemSelectedListene
     val TAG = "CountriesByRegion"
     private lateinit var binding: ActivityCountriesByRegionBinding
     private lateinit var mMap: GoogleMap
+<<<<<<< HEAD
+=======
 
     val europe = LatLng(47.04, 15.74)
     val americas = LatLng(5.13, -80.91)
     val asia = LatLng(22.25, 76.84)
     val africa = LatLng(9.88, 20.41)
     val regions = arrayOf(europe, americas, asia, africa)
+>>>>>>> 06421bcefab15efc9b163d38be10ef6068f1ce68
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,14 +62,20 @@ class CountriesByRegion : AppCompatActivity(), AdapterView.OnItemSelectedListene
     override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
         // An item was selected. You can retrieve the selected item using
         // parent.getItemAtPosition(pos)
+<<<<<<< HEAD
+=======
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(regions[pos], -10F))
+>>>>>>> 06421bcefab15efc9b163d38be10ef6068f1ce68
     }
 
     override fun onNothingSelected(parent: AdapterView<*>) {
         // Another interface callback
+<<<<<<< HEAD
+=======
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(asia, -10F))
+>>>>>>> 06421bcefab15efc9b163d38be10ef6068f1ce68
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
