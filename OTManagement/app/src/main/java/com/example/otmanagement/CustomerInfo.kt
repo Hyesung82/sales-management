@@ -15,5 +15,7 @@ class CustomerInfo : AppCompatActivity() {
         binding.ivBack.setOnClickListener {
             onBackPressed()
         }
+
+        // TODO: 고객 정보 filter
     }
 }
