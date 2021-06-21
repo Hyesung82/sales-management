@@ -191,6 +191,58 @@ app.post('/searchByName', (req, res) => {
     });   
 })
 
+app.post('/allCustomers', (req, res) => {
+    console.log('who get in here post /allCustomers');
+    var inputData;
+    var outputData = "";
+    var name;
+    req.on('data', (data) => {
+        inputData = JSON.parse(data);
+    });
+    req.on('end', () => {
+        name = inputData.name
+        console.log("customer name: " + name);
+
+        db.query(`SELECT name FROM customers WHERE name LIKE ?`, ['%'+name+'%'], function(error, results) {
+            console.log(results);
+
+            for (var i = 0; i < results.length; i++) {
+                outputData += results[i].name + "~";
+            }
+            res.write(String(outputData))
+            res.end();
+        });
+    });   
+})
+
+app.post('/customer', (req, res) => {
+    console.log('who get in here post /customer');
+    var inputData;
+    var outputData = "";
+    var name;
+    req.on('data', (data) => {
+        inputData = JSON.parse(data);
+    });
+    req.on('end', () => {
+        name = inputData.name
+        console.log("customer name: " + name);
+
+        db.query(`SELECT customer_id, address, credit_limit, website FROM customers WHERE name=?`, [name], function(error, results) {
+            console.log(results);
+
+            outputData += results[0].customer_id + "^" +
+                        results[0].address + "^" +
+                        results[0].credit_limit + "^" +
+                        results[0].website + "~";
+
+            // db.query(`SELECT `)
+
+            res.write(String(outputData))
+            res.end();
+        });
+    });   
+})
+
 app.post('/cur_user', (req, res) => {
     console.log('who get in here post /cur_user');
     var inputData;
