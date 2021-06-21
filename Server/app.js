@@ -1,8 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-// var cookieParser = require('cookie-parser');
-// var logger = require('morgan');
 
 var mysql = require('mysql');
 var db = mysql.createConnection({
@@ -25,8 +23,6 @@ var server = app.listen(3001, () => {
 // return socket.io server.
 var io = socketio.listen(server)
 
-var whoIsOn = [];
-
 // error handler
 app.use(function (err, req, res, next) {
     // set locals, only providing error in development
@@ -41,74 +37,56 @@ app.use(function (err, req, res, next) {
 module.exports = app;
 
 
-app.get('/users', (req, res) => {
-    console.log('who get in here /users');
-    res.json("get some data")
-});
-
-app.post('/dup_check', (req, res) => {
-    console.log('who get in here post /dup_check');
+app.post('/myInfo', (req, res) => {
+    console.log('who get in here post /myInfo');
     var inputData;
+    var outputData = "";
     var user_id;
-    var status = false;
 
     req.on('data', (data) => {
         inputData = JSON.parse(data);
     });
     req.on('end', () => {
-        user_id = inputData.user_id
+        user_id = inputData.user_id;
         console.log("user_id: " + user_id);
 
-        db.query(`SELECT id FROM user WHERE id=?`, [user_id], function(error, results) {
-            console.log(results)
-            if (results.length == 0) {
-                console.log("results의 길이는 0");
-                status = true;
-                
-                res.write("1");
-                console.log("send ok sign");
-                res.end();
-            } else {
-                res.write("-1");
-                console.log("send dup sign");
-                res.end();
-            }
+        db.query(`SELECT first_name, last_name, email, phone, hire_date, job_title FROM employees WHERE userid=?`, [user_id], function(error, results) {
+            console.log(results);
+
+            outputData += results[0].first_name + " " + results[0].last_name + "^" +
+                        results[0].email + "^" +
+                        results[0].phone + "^" +
+                        (results[0].hire_date).split(' ') + "^" +
+                        results[0].job_title;
+
+            res.write(String(outputData))
+            res.end();
         });
     });
-})
+});
 
-app.post('/join', (req, res) => {
-    console.log('who get in here post /join');
+app.get('/update', (req, res) => {
+    console.log('who get in here post /update');
     var inputData;
-    var user_id, user_pw, user_name
+    var user_id, email, phone;
+
     req.on('data', (data) => {
         inputData = JSON.parse(data);
     });
     req.on('end', () => {
-        user_id = inputData.user_id
-        user_pw = inputData.user_pw
-        user_name = inputData.name
-        console.log("user_id: " + user_id + ", user_pw: " + user_pw + ", name: " + user_name);
+        user_id = inputData.user_id;
+        email = inputData.email;
+        phone = inputData.phone;
+        console.log("user_id: " + user_id);
 
-        db.query(`SELECT id FROM user WHERE id=?`, [user_id], function(error, results) {
-            console.log(results)
-            if (results == null) {
-                console.log("results는 null")
-            }
-        });
-
-        db.query(`INSERT INTO user (id, password, name) VALUES(?, ?, ?)`, [user_id, user_pw, user_name], function(error, results) {
+        db.query(`UPDATE employees SET email=?, phone=? WHERE userid=?`, [email, phone, user_id], function(error, results) {
             console.log(results);
-        });
-
-        db.query(`SELECT * FROM user`, function(error, results) {
-            console.log(results);
+                        
+            res.write(String(1))
+            res.end();
         });
     });
-    
-    res.write("OK!");
-    res.end();
-})
+});
 
 app.post('/login', (req, res) => {
     console.log('who get in here post /login');
@@ -120,20 +98,19 @@ app.post('/login', (req, res) => {
     req.on('end', () => {
         user_id = inputData.user_id
         user_pw = inputData.user_pw
-        user_name = inputData.name
         console.log("user_id: " + user_id + ", user_pw: " + user_pw);
 
-        // db.query(`SELECT * FROM user WHERE id=? AND password=?`, [user_id, user_pw], function(error, results) {
-        //     console.log(results);
+        db.query(`SELECT * FROM employees WHERE userid=? AND passwd=?`, [user_id, user_pw], function(error, results) {
+            console.log(results);
 
-        //     if (results.length == 0) {
-        //         res.write("-1");
-        //         res.end();
-        //     } else {
-        //         res.write("1");
-        //         res.end();
-        //     }
-        // });
+            if (results.length == 0) {
+                res.write("-1");
+                res.end();
+            } else {
+                res.write("1");
+                res.end();
+            }
+        });
     });   
 })
 

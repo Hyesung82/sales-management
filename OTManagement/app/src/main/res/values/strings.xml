@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">OT Management</string>
 
+    <string name="preference_file_key">Preference</string>
+    <string name="user_id">userid</string>
+    <string name="user_pw">passwd</string>
+
     <string name="login_id">아이디</string>
     <string name="login_password">비밀번호</string>
     <string name="button_login">로그인</string>

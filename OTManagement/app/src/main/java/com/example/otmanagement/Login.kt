@@ -1,9 +1,11 @@
 package com.example.otmanagement
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.otmanagement.databinding.ActivityLoginBinding
 import kotlinx.coroutines.GlobalScope
@@ -14,7 +16,7 @@ import java.net.HttpURLConnection
 import java.net.MalformedURLException
 import java.net.URL
 
-const val serverAddr = "http://f5b9cb0fcc05.ngrok.io"
+const val serverAddr = "http://3e5bb49abfbc.ngrok.io"
 
 class Login : AppCompatActivity() {
     private val TAG = "Login"
@@ -25,8 +27,17 @@ class Login : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
 
         binding.bLogin.setOnClickListener {
-            login(binding.tietId.text.toString(), binding.tietPassword.text.toString())
-            startActivity(Intent(this, MainActivity::class.java))
+            val id = binding.tietId.text.toString()
+            val password = binding.tietPassword.text.toString()
+
+            login(id, password)
+//            startActivity(Intent(this, MainActivity::class.java))
+
+            val sharedPref = getSharedPreferences(
+                getString(R.string.preference_file_key), Context.MODE_PRIVATE)
+            val editor = sharedPref.edit()
+            editor.putString(getString(R.string.user_id), id)
+            editor.commit()
         }
     }
 
@@ -88,11 +99,19 @@ class Login : AppCompatActivity() {
                     }
 
                     if (status) {
+                        runOnUiThread {
+
+                            Toast.makeText(applicationContext, "로그인 성공", Toast.LENGTH_LONG).show()
+                        }
+
                         val intent = Intent(applicationContext, MainActivity::class.java)
                         startActivity(intent)
                     } else {
 //                        val dialog = LoginFragment()
 //                        dialog.show(supportFragmentManager, "login error")
+                        runOnUiThread {
+                            Toast.makeText(applicationContext, "로그인 실패", Toast.LENGTH_LONG).show()
+                        }
                         Log.e(TAG, "로그인 에러")
                     }
                 } catch (e: IOException) {

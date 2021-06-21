@@ -22,7 +22,7 @@
             android:id="@+id/tvCustomerTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="INTL FCStone"
+            android:text=""
             android:textSize="24sp"
             android:textStyle="bold"
             android:translationY="15dp"
@@ -72,7 +72,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
-                            android:text="5344 Haverford Ave"
+                            android:text=""
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
@@ -92,7 +92,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
-                            android:text="http://www.~"
+                            android:text=""
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
@@ -112,7 +112,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
-                            android:text="5000"
+                            android:text=""
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
