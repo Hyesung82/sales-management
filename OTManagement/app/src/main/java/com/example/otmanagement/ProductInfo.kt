@@ -35,7 +35,7 @@ class ProductInfo : AppCompatActivity() {
             }
 
             override fun onQueryTextSubmit(query: String): Boolean {
-                val intent = Intent(applicationContext, ItemByCategory::class.java).apply {
+                val intent = Intent(applicationContext, ItemByName::class.java).apply {
                     putExtra(EXTRA_QUERY, query)
                 }
                 startActivity(Intent(intent))

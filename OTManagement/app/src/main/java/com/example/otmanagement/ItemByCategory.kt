@@ -33,10 +33,6 @@ class ItemByCategory : AppCompatActivity() {
         binding.tvCategoryName.text = curCategory
         getProducts(curCategory!!)
 
-        // TODO: 카테고리에 따라 아이템 불러오기
-//        val mAdapter = ProductListAdapter(this, productList)
-//        binding.rvByCategory.adapter = mAdapter
-
         val lm = LinearLayoutManager(this)
         binding.rvByCategory.layoutManager = lm
         binding.rvByCategory.setHasFixedSize(true)

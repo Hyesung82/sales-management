@@ -164,6 +164,33 @@ app.post('/searchByCategory', (req, res) => {
     });   
 })
 
+app.post('/searchByName', (req, res) => {
+    console.log('who get in here post /searchByName');
+    var inputData;
+    var outputData = "";
+    var name;
+    req.on('data', (data) => {
+        inputData = JSON.parse(data);
+    });
+    req.on('end', () => {
+        name = inputData.name
+        console.log("product name: " + name);
+
+        db.query(`SELECT * FROM products WHERE product_name LIKE ?`, ['%'+name+'%'], function(error, results) {
+            console.log(results);
+
+            for (var i = 0; i < results.length; i++) {
+                outputData += results[i].product_name + "^" +
+                            results[i].description + "^" +
+                            results[i].standard_cost + "^" +
+                            results[i].list_price + "~";
+            }
+            res.write(String(outputData))
+            res.end();
+        });
+    });   
+})
+
 app.post('/cur_user', (req, res) => {
     console.log('who get in here post /cur_user');
     var inputData;
