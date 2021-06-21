@@ -1,19 +1,17 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+// var cookieParser = require('cookie-parser');
+// var logger = require('morgan');
 
-var oracledb = require('oracledb');
-var dbConfig = require('./dbConfig')
-// var db = mysql.createConnection({
-//     host: 'localhost',
-//     user: 'root',
-//     password: '0000',
-//     database: 'ot_sales_db',
-// });
-// db.connect();
-oracledb.autoCommit = true;
+var mysql = require('mysql');
+var db = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '0000',
+    database: 'ot_db',
+});
+db.connect();
 
 var app = express();
 var socketio = require('socket.io');
@@ -121,6 +119,7 @@ app.post('/login', (req, res) => {
     req.on('end', () => {
         user_id = inputData.user_id
         user_pw = inputData.user_pw
+        user_name = inputData.name
         console.log("user_id: " + user_id + ", user_pw: " + user_pw);
 
         // db.query(`SELECT * FROM user WHERE id=? AND password=?`, [user_id, user_pw], function(error, results) {
@@ -134,44 +133,35 @@ app.post('/login', (req, res) => {
         //         res.end();
         //     }
         // });
+    });   
+})
 
-
-        oracledb.getConnection({ 
-            user : dbConfig.user, 
-            password : dbConfig.password, 
-            connectString : dbConfig.connectString 
-        }, 
-        function(err, connection) { 
-            if (err) { 
-                console.error(err.message); 
-                return; 
-            } 
-    
-            let query = 'select * ' + ' from employees'; 
-    
-            connection.execute(query, [], function (err, result) { 
-                if (err) { 
-                    console.error(err.message); 
-                    doRelease(connection); 
-                    return; 
-                } 
-                
-                console.log(result.rows); // 데이터 
-                doRelease(connection, result.rows); // Connection 해제 
-            }); 
-        }); // DB 연결 해제 
-    
-        function doRelease(connection, rowList) { 
-            connection.release(function (err) { 
-                if (err) { 
-                    console.error(err.message); 
-                } // DB종료까지 모두 완료되었을 시 응답 데이터 반환 
-                console.log('list size: ' + rowList.length); 
-                response.send(rowList); 
-            }); 
-        }
+app.post('/searchByCategory', (req, res) => {
+    console.log('who get in here post /searchByCategory');
+    var inputData;
+    var outputData = "";
+    var name;
+    req.on('data', (data) => {
+        inputData = JSON.parse(data);
     });
+    req.on('end', () => {
+        name = inputData.category
+        console.log("category name: " + name);
 
+        db.query(`SELECT * FROM products WHERE category_id=(SELECT category_id FROM product_categories WHERE category_name=?)`, 
+        [name], function(error, results) {
+            console.log(results);
+
+            for (var i = 0; i < results.length; i++) {
+                outputData += results[i].product_name + "^" +
+                            results[i].description + "^" +
+                            results[i].standard_cost + "^" +
+                            results[i].list_price + "~";
+            }
+            res.write(String(outputData))
+            res.end();
+        });
+    });   
 })
 
 app.post('/cur_user', (req, res) => {
