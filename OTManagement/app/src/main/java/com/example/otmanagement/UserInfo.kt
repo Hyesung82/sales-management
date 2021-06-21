@@ -51,6 +51,9 @@ class UserInfo : AppCompatActivity() {
 
             update(id!!, newEmail, newPhone)
 
+            binding.tvEmployeeMail.setText(newEmail)
+            binding.tvEmployeePhone.setText(newPhone)
+
             binding.etEmail.visibility = View.INVISIBLE
             binding.etPhone.visibility = View.INVISIBLE
             binding.tvEmployeeMail.visibility = View.VISIBLE
@@ -201,6 +204,8 @@ class UserInfo : AppCompatActivity() {
                 }
 
                 Log.d(TAG, "Response: $buffer")
+                info[1] = email
+                info[2] = phone
 
                 status = true
                 refresh()

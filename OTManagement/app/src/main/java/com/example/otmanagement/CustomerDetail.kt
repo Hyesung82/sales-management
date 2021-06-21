@@ -1,5 +1,7 @@
 package com.example.otmanagement
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -29,6 +31,11 @@ class CustomerDetail : AppCompatActivity() {
 
         binding.ivBack.setOnClickListener {
             onBackPressed()
+        }
+
+        binding.tvWebsite.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(binding.tvWebsite.text.toString()))
+            startActivity(intent)
         }
 
         val curCustomer = intent.getStringExtra(EXTRA_CUSTOMER)

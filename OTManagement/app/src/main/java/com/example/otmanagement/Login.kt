@@ -16,7 +16,7 @@ import java.net.HttpURLConnection
 import java.net.MalformedURLException
 import java.net.URL
 
-const val serverAddr = "http://3e5bb49abfbc.ngrok.io"
+const val serverAddr = "http://42be392063f2.ngrok.io"
 
 class Login : AppCompatActivity() {
     private val TAG = "Login"
@@ -101,7 +101,7 @@ class Login : AppCompatActivity() {
                     if (status) {
                         runOnUiThread {
 
-                            Toast.makeText(applicationContext, "로그인 성공", Toast.LENGTH_LONG).show()
+                            Toast.makeText(applicationContext, "로그인 성공", Toast.LENGTH_SHORT).show()
                         }
 
                         val intent = Intent(applicationContext, MainActivity::class.java)
@@ -110,7 +110,7 @@ class Login : AppCompatActivity() {
 //                        val dialog = LoginFragment()
 //                        dialog.show(supportFragmentManager, "login error")
                         runOnUiThread {
-                            Toast.makeText(applicationContext, "로그인 실패", Toast.LENGTH_LONG).show()
+                            Toast.makeText(applicationContext, "로그인 실패", Toast.LENGTH_SHORT).show()
                         }
                         Log.e(TAG, "로그인 에러")
                     }
