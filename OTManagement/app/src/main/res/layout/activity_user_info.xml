@@ -134,12 +134,25 @@
             android:id="@+id/bLogout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="6dp"
             android:layout_marginTop="20dp"
             android:backgroundTint="#656565"
             android:text="@string/button_logout"
             android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/bUpdate"
+            app:layout_constraintTop_toBottomOf="@+id/tvEmployeeTitle" />
+
+        <Button
+            android:id="@+id/bUpdate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#656565"
+            android:text="정보 수정"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvEmployeeTitle" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
