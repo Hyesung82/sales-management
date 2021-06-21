@@ -4,6 +4,8 @@
     <string name="login_id">아이디</string>
     <string name="login_password">비밀번호</string>
     <string name="button_login">로그인</string>
+    <string name="button_logout">로그아웃</string>
+
 
     <string name="button_product_info">제품 정보 보기</string>
     <string name="button_customer_info">고객 정보 보기</string>
