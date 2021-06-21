@@ -43,8 +43,8 @@ class CustomerDetail : AppCompatActivity() {
     fun refresh() {
         runOnUiThread {
             binding.tvAddress.text = customerInfo[1]
-            binding.tvWebsite.text = customerInfo[2]
-            binding.tvCreditLimit.text = customerInfo[3]
+            binding.tvCreditLimit.text = customerInfo[2]
+            binding.tvWebsite.text = customerInfo[3]
 
             val mAdapter = OrderListAdapter(this, orders) {
                 // TODO: 주문 상세 정보 팝업
