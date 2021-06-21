@@ -255,3 +255,29 @@ app.post('/customer', (req, res) => {
         });
     });   
 })
+
+app.post('/warehouse', (req, res) => {
+    console.log('who get in here post /warehouse');
+    var inputData;
+    var outputData = "";
+    var name;
+    req.on('data', (data) => {
+        inputData = JSON.parse(data);
+    });
+    req.on('end', () => {
+        name = inputData.name
+        console.log("warehouse name: " + name);
+
+        db.query(`SELECT p.product_name, i.quantity FROM inventories i LEFT JOIN products p on i.product_id=p.product_id WHERE warehouse_id=(SELECT warehouse_id FROM warehouses WHERE warehouse_name=?)`, [name], function(error, results) {
+            console.log(results);
+
+            for (var i = 0; i < results.length; i++) {
+                outputData += results[i].product_name + "^" +
+                        results[i].quantity + "~";
+            }
+            
+            res.write(String(outputData));
+            res.end();
+        });
+    });   
+})

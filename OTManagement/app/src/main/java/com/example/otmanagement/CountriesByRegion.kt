@@ -121,7 +121,7 @@ class CountriesByRegion : AppCompatActivity(), AdapterView.OnItemSelectedListene
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(regions[regionNum!!], -10F))
         mMap.setOnInfoWindowClickListener {
-            val intent = Intent(applicationContext, ItemByCategory::class.java).apply {
+            val intent = Intent(applicationContext, WarehouseDetail::class.java).apply {
                 Log.d(TAG, "extra_warehouse: ${it.snippet}")
                 putExtra(EXTRA_WAREHOUSE, it.snippet)
             }
@@ -131,7 +131,7 @@ class CountriesByRegion : AppCompatActivity(), AdapterView.OnItemSelectedListene
 
     override fun onInfoWindowClick(marker: Marker?) {
         if (marker != null) {
-            val intent = Intent(applicationContext, ItemByCategory::class.java).apply {
+            val intent = Intent(applicationContext, WarehouseDetail::class.java).apply {
                 Log.d(TAG, "extra_warehouse: ${marker.snippet}")
                 putExtra(EXTRA_WAREHOUSE, marker.snippet)
             }
