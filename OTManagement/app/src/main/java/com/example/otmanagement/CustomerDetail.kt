@@ -43,8 +43,8 @@ class CustomerDetail : AppCompatActivity() {
     fun refresh() {
         runOnUiThread {
             binding.tvAddress.text = customerInfo[1]
-            binding.tvWebsite.text = customerInfo[2]
-            binding.tvCreditLimit.text = customerInfo[3]
+            binding.tvCreditLimit.text = customerInfo[2]
+            binding.tvWebsite.text = customerInfo[3]
 
             val mAdapter = OrderListAdapter(this, orders) {
                 // TODO: 주문 상세 정보 팝업
@@ -92,17 +92,24 @@ class CustomerDetail : AppCompatActivity() {
 
                 Log.d(TAG, "Response: $buffer")
                 val arr = buffer.split("~")
-                for (i: String in arr) {
-                    Log.d(TAG, "record: $i")
-                    val field = i.split('^')
-                    if(field.size == 4) {
-                        Log.d(TAG, "field: ${field[0]} // ${field[1]} // ${field[2]} // ${field[3]}")
-                        customerInfo.add(field[0])
-                        customerInfo.add(field[1])
-                        customerInfo.add(field[2])
-                        customerInfo.add(field[3])
+
+//                Log.d(TAG, "record: $i")
+                val field1 = arr[0].split('^')
+                    Log.d(TAG, "field: ${field1[0]} // ${field1[1]} // ${field1[2]} // ${field1[3]}")
+                    customerInfo.add(field1[0])
+                    customerInfo.add(field1[1])
+                    customerInfo.add(field1[2])
+                    customerInfo.add(field1[3])
+
+                Log.d(TAG, "field2: ${arr[1]}")
+                val field2 = arr[1].split('!')
+                for (i: String in field2) {
+                    val o = i.split('^')
+                    if (o.size == 4) {
+                        orders.add(Order(o[0].toInt(), o[1], o[2], o[3]))
                     }
                 }
+
                 status = true
                 refresh()
 

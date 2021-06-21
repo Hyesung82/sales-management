@@ -10,6 +10,7 @@ var db = mysql.createConnection({
     user: 'root',
     password: '0000',
     database: 'ot_db',
+    dateStrings: 'date'
 });
 db.connect();
 
@@ -235,75 +236,22 @@ app.post('/customer', (req, res) => {
                         results[0].credit_limit + "^" +
                         results[0].website + "~";
 
-            // db.query(`SELECT `)
+            db.query(`SELECT orders.order_id, orders.status, employees.last_name, orders.order_date FROM orders LEFT JOIN employees ON orders.salesman_id=employees.employee_id WHERE customer_id=?`, 
+            [results[0].customer_id], function(error, results2) {
+                console.log(results2)
+                var outputData2="";
 
-            res.write(String(outputData))
-            res.end();
+                for (var i = 0; i < results2.length; i++) {
+                    outputData2 += String(results2[i].order_id) + "^" +
+                                results2[i].status + "^" +
+                                results2[i].last_name + "^" +
+                                (results2[i].order_date).split(' ')[0] + "!";
+                    console.log(outputData2)
+                }
+
+                res.write(String(outputData + outputData2))
+                res.end();
+            })
         });
     });   
-})
-
-app.post('/cur_user', (req, res) => {
-    console.log('who get in here post /cur_user');
-    var inputData;
-    var user_id
-    req.on('data', (data) => {
-        inputData = JSON.parse(data);
-    });
-    req.on('end', () => {
-        user_id = inputData.user_id
-        console.log("user_id: " + user_id);
-
-        db.query(`SELECT * FROM user WHERE id=?`, [user_id], function(error, results) {
-            console.log(results);
-
-            res.write(results[0].name);
-            res.end();
-        });
-    });
-})
-
-
-io.on('connection', function (socket) {
-    var nickname = ''
-
-    // 'login' 이벤트를 발생시킨 경우
-    socket.on('login', function (data) {
-        console.log(`${data} 입장 ------------------------`)
-        whoIsOn.push(data)
-        nickname = data
-
-        var whoIsOnJson = `${whoIsOn}`
-        console.log(whoIsOnJson)
-
-        db.query(`SELECT * FROM user`, function(error, results) {
-            console.log(results);
-            
-            
-            io.emit('newUser', results)
-        });
-
-        // 서버에 연결된 모든 소켓에 보냄
-        // io.emit('newUser', whoIsOnJson)
-    })
-
-    socket.on('say', function (data) {
-        console.log(`${nickname} : ${data}`)
-
-        socket.emit('myMsg', data)
-        socket.broadcast.emit('newMsg', data)  // 현재 소켓 이외의 소켓에 보냄
-    })
-
-    socket.on('disconnect', function() {
-        console.log(`${nickname} 퇴장 -----------------------`)
-    })
-
-    socket.on('logout', function() {
-        whoIsOn.splice(whoIsOn.indexOf(nickname), 1)
-        var data = {
-            whoIsOn: whoIsOn,
-            disconnected: nickname
-        }
-        socket.emit('logout', data)
-    })
 })
