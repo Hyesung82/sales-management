@@ -13,4 +13,12 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- No Title Bar-->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+
+    출처: https://commin.tistory.com/63 [Commin의 일상코딩]
 </resources>
