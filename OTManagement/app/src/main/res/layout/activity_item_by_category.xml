@@ -10,13 +10,13 @@
 
         <ImageView
             android:id="@+id/ivBack"
-            android:layout_width="37dp"
-            android:layout_height="37dp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
             android:src="@drawable/left_arrow"
             android:translationX="10dp"
             android:translationY="15dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvCategoryName"

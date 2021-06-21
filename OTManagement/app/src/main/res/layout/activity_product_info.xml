@@ -10,8 +10,8 @@
 
         <ImageView
             android:id="@+id/ivBack"
-            android:layout_width="37dp"
-            android:layout_height="37dp"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
             android:src="@drawable/left_arrow"
             android:translationX="10dp"
             android:translationY="15dp"
@@ -34,13 +34,12 @@
             android:id="@+id/rvCategory"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginStart="10dp"
             android:layout_marginTop="32dp"
-            tools:listitem="@layout/product_list_item"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/svProduct" />
+            app:layout_constraintTop_toBottomOf="@+id/svProduct"
+            tools:listitem="@layout/product_list_item" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
