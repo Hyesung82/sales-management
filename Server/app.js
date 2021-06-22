@@ -2,12 +2,12 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 
-var mysql = require('mysql');
+var mysql = require('mysql2');
 var db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '0000',
-    database: 'ot_db',
+    database: 'ot_sales_db',
     dateStrings: 'date'
 });
 db.connect();

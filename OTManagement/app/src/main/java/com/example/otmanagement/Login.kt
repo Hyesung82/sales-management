@@ -16,7 +16,7 @@ import java.net.HttpURLConnection
 import java.net.MalformedURLException
 import java.net.URL
 
-const val serverAddr = "http://42be392063f2.ngrok.io"
+const val serverAddr = "http://0586bb53ed85.ngrok.io"
 
 class Login : AppCompatActivity() {
     private val TAG = "Login"
